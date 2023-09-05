@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <title>Signup</title>
+</head>
+
+<body style="background-color: #ffc10770;">
+    <% if (success.length) {%>
+        <div class=" alert alert-success alert-dismissible fade show" role="alert">
+            <%= success%>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <%}%>
+            <% if (error.length) {%>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <%= error%>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <%}%>
+                    <div class="card m-auto mt-5 bg-light" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://thumbs.dreamstime.com/b/illustration-creative-creative-design-sign-up-button-square-web-button-white-background-isolated-illustration-creative-design-144644221.jpg"
+                                    class="img-fluid rounded-start w-50" alt="Image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <form action="/signup" method='POST' class="d-flex flex-column align-items-center">
+                                        <label for="email">Type your email</label>
+                                        <input id="email" class="form-control form-control mb-2" type="email"
+                                            name='email' placeholder="email">
+                                        <label for="pass">Type your password</label>
+                                        <input id="pass" class="form-control form-control mb-2" type="password"
+                                            name='password' placeholder="password">
+                                        <button class="btn btn-success mb-3">Sign up </button>
+                                    </form>
+                                    <label for="act">Already have an account.Sign in</label>
+                                    <a href="/login"><button class="btn btn-primary" id="act">Sign in</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
