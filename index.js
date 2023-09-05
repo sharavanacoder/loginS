@@ -127,7 +127,6 @@ app.post("/signup", async (req, res) => {
 app.get('/signout', (req, res) => {
     req.flash('success', 'Successfully log out!!!');
     delete req.session.user
-    console.log(req.session, 'null');
     return res.redirect('/')
 
 })
