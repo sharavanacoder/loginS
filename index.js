@@ -13,7 +13,6 @@ const mongoose = require('mongoose');
 const MongoDBStore = require('connect-mongo');
 
 const dbUrl = process.env.DBURL || 'mongodb://0.0.0.0:27017/login';
-console.log(dbUrl);
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -43,7 +42,7 @@ store.on('error', function (e) {
 app.use(session({
     secret,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
         httpOnly: true,
         expires: Date.now() + 10 * 60 * 60 * 24 * 7,
@@ -108,13 +107,12 @@ app.get("/signup", (req, res) => {
 })
 app.post("/signup", async (req, res) => {
     const { email, password } = req.body;
-    let found = await User.find({ email: email });
+    let found = await User.findOne({ email });
     if (!email || !password) {
         req.flash('error', 'Please fill the fields!!!')
         res.redirect('/signup');
     }
     else if (found) {
-        console.log(found);
         req.flash('error', "Already Registered!!!");
         res.redirect("/signup");
     } else {
@@ -128,7 +126,8 @@ app.post("/signup", async (req, res) => {
 });
 app.get('/signout', (req, res) => {
     req.flash('success', 'Successfully log out!!!');
-    req.session = null;
+    delete req.session.user
+    console.log(req.session, 'null');
     return res.redirect('/')
 
 })
